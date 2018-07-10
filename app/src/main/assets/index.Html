@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -11,40 +11,79 @@
      
       
 
-					<p>ID：<input type="text" name="fullname" /></p>
-				<p>密码：<input type="password" name="email" /></p>
+					<p>ID：<input type="text" id = "id" value="1" /></p>
+				<p>密码：<input type="password"  id = "password" value="123456"/></p>
+				
+				<div align="left" id="list"></div>
 			
-	   <div align="left" style="color: green" id="top">#消息记录</div>
-			<div align="left" id="list"></div>
-	   <textarea name="textarea" id="execInput" cols="45" rows="6"></textarea><br/>
-	   <br/>
-      <input type="button" name="button" id="button" onclick="sendMessage()" value=" 发 送 " />
+	 
+      <input type="button" name="button" id="button" onclick="login()" value="登录" />
      
 </div>
 
 <script type="text/javascript">
-    var timestamp=Date.parse(new Date());
-    var webSocket=new WebSocket("ws://192.168.0.105:8080/exec");
- 
-    webSocket.onerror = function(event) {
-       alert(event.data);
-    };
- 
-    webSocket.onopen = function(event) {
-      document.getElementById("list").innerHTML="连接建立成功！";
-    };
- 
-    webSocket.onmessage = function(event) {
-      document.getElementById("list").innerHTML+="<br/>" + event.data;
-	  //alert("数据已接收...");
-    };
+   
     
-    function sendMessage() {
-      var msg=document.getElementById("execInput").value;
-      webSocket.send(msg);
-	  document.getElementById("list").innerHTML+="<br/>" + document.getElementById("execInput").value;
-	  document.getElementById("execInput").value="";
+    
+	
+	
+function getCookie(c_name)
+{
+if (document.cookie.length>0)
+  {
+  c_start=document.cookie.indexOf(c_name + "=")
+  if (c_start!=-1)
+    { 
+    c_start=c_start + c_name.length+1 
+    c_end=document.cookie.indexOf(";",c_start)
+    if (c_end==-1) c_end=document.cookie.length
+    return unescape(document.cookie.substring(c_start,c_end))
+    } 
+  }
+return ""
+}
+
+function setCookie(c_name,value,expiredays)
+{
+var exdate=new Date()
+exdate.setDate(exdate.getDate()+expiredays)
+document.cookie=c_name+ "=" +escape(value)+
+((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
+}
+
+function checkCookie()
+{
+username=getCookie('username')
+if (username!=null && username!="")
+  {alert('Welcome again '+username+'!')}
+else 
+  {
+  username=prompt('Please enter your name:',"")
+  if (username!=null && username!="")
+    {
+    setCookie('username',username,1)
     }
+  }
+}
+
+function login() {
+
+	$.post("http://192.168.0.105:8080/login",
+	JSON.stringify({
+"id":document.getElementById("id").value,
+"password":document.getElementById("password").value
+}),
+    function(data){
+	 setCookie("token",data.token,7);
+	 if(data.token!=null){
+		window.location.href="http://192.168.0.105:8080/exec.html"; 
+	 }else{
+	 document.getElementById("list").innerHTML+="<br/>" + data.msg;
+	 }
+    },"json");
+	
+	}
+
  </script>
 </head>
 <body>

@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="http://www.w3school.com.cn/jquery/jquery-1.11.1.min.js"></script>
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<title></title>
+<div align="left">
+     
+      
+
+			<div align="left" id="list"></div>
+	   <textarea name="textarea" id="execInput" cols="45" rows="6"></textarea><br/>
+	   <br/>
+      <input type="button" name="button" id="button" onclick="sendMessage()" value=" 发 送 " />
+     
+</div>
+
+<script type="text/javascript">
+    var timestamp=Date.parse(new Date());
+    var webSocket=new WebSocket("ws://192.168.0.105:8080/exec");
+ 
+ webSocket.setRequestHeader("token",)
+    webSocket.onerror = function(event) {
+       alert(event.data);
+    };
+ 
+    webSocket.onopen = function(event) {
+      document.getElementById("list").innerHTML="连接建立成功！";
+    };
+ 
+    webSocket.onmessage = function(event) {
+      document.getElementById("list").innerHTML+="<br/>" + event.data;
+	  //alert("数据已接收...");
+    };
+    
+    function sendMessage() {
+      var msg=document.getElementById("execInput").value;
+      webSocket.send(msg);
+	  document.getElementById("list").innerHTML+="<br/>" + document.getElementById("execInput").value;
+	  document.getElementById("execInput").value="";
+    }
+	
+	
+	
+
+ </script>
+</head>
+<body>
+
+
+ 
+</body>
+ 
+</html>
