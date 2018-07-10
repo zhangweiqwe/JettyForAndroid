@@ -1,0 +1,19 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="cn.wsgwz.baselibrary" >
+
+
+
+    <application >
+        <provider
+            android:name="cn.wsgwz.baselibrary.provider.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_path" />
+        </provider>
+
+
+    </application>
+</manifest>

@@ -1,0 +1,22 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ashokvarma.sqlitemanager" >
+
+    <application>
+        <activity
+            android:name=".SqliteManagerActivity"
+            android:label="@string/sqlite_manager_app_name"
+            android:theme="@style/SqliteManager.Theme" >
+
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.VIEW"/>-->
+                <!--<category android:name="android.intent.category.DEFAULT"/>-->
+                <!--<category android:name="android.intent.category.BROWSABLE"/>-->
+                <!--<data android:scheme="file"/>-->
+                <!--<data android:mimeType="*/*"/>-->
+                <!--<data android:host="*"/>-->
+            <!--</intent-filter>-->
+
+
+        </activity>
+    </application>
+</manifest>

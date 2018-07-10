@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Jetty</string>
+    <string name="app_description">Jetty mini</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="web_server">webServer</string>
+    <string name="ftp_server">ftpServer</string>
+    <string name="run_web_server">启动webServer</string>
+    <string name="run_FTP_server">启动tfp</string>
+
+
+    <!--sqlite-->
+    <string name="data_base">数据库</string>
+    <string name="manager_data_base">管理数据库</string>
+</resources>

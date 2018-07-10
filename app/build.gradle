@@ -1,0 +1,169 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "cn.wsgwz.server"
+        minSdkVersion 14
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled true
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+
+            /*lintOptions {
+                checkReleaseBuilds false
+                abortOnError false
+            }*/
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    /*packagingOptions {//加上这写代码
+        pickFirst 'META-INF/*'
+    }*/
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+
+        exclude 'about_files/LICENSE_ASL20.txt'
+        exclude 'about_files/LICENSE_CDDL.txt'
+        exclude 'plugin.properties'
+        exclude 'META-INF/eclipse.inf'
+
+        exclude 'about_files/LICENSE.txt'
+
+        // pickFirst '*'
+
+//        exclude 'org/eclipse/jdt/internal/compiler/parser/parser4.rsc'
+//        exclude 'javax/servlet/jsp/resources/jsp_2_0.xsd'
+//        exclude 'org/eclipse/jdt/internal/compiler/parser/unicode/start1.rsc'
+//        exclude 'org/eclipse/jdt/internal/compiler/parser/parser11.rsc'
+//        exclude 'org/eclipse/jdt/internal/compiler/parser/parser6.rsc'
+//        exclude 'org/eclipse/jdt/internal/compiler/parser/unicode6/part0.rsc'
+//        exclude 'org/eclipse/jdt/internal/compiler/parser/parser2.rsc'
+//        exclude 'org/eclipse/jdt/internal/compiler/messages.properties'
+//        exclude 'org/eclipse/jdt/internal/compiler/parser/unicode/part14.rsc'
+//        exclude 'org/apache/taglibs/standard/resources/Resources.properties'
+//        exclude 'org/eclipse/jdt/internal/compiler/parser/parser13.rsc'
+//        exclude 'org/eclipse/jdt/internal/compiler/parser/parser8.rsc'
+//        exclude 'javax/servlet/jsp/resources/jsp_2_2.xsd'
+//        exclude 'META-INF/permittedTaglibs.tld'
+//        exclude 'META-INF/scriptfree.tld'
+//        exclude 'META-INF/c.tld'
+//        exclude 'org/eclipse/jdt/internal/compiler/parser/parser24.rsc'
+//        exclude 'org/eclipse/jdt/internal/compiler/parser/unicode/part1.rsc'
+//        exclude 'org/eclipse/jdt/internal/compiler/parser/parser18.rsc'
+//        exclude 'META-INF/fmt-1_0-rt.tld'
+//        exclude 'org/eclipse/jdt/internal/compiler/parser/unicode6/start1.rsc'
+//        exclude 'javax/servlet/jsp/resources/web-jsptaglibrary_1_1.dtd'
+//        exclude 'org/apache/jasper/servlet/mbeans-descriptors.xml'
+//        exclude 'META-INF/c-1_0-rt.tld'
+//        exclude 'org/eclipse/jdt/internal/compiler/parser/parser22.rsc'
+//        exclude 'org/eclipse/jdt/internal/compiler/parser/unicode6/part1.rsc'
+//        exclude 'META-INF/fn.tld'
+//        exclude 'org/eclipse/jdt/internal/compiler/parser/parser16.rsc'
+//        exclude 'javax/servlet/jsp/resources/web-jsptaglibrary_2_1.xsd'
+//        exclude 'META-INF/sql-1_0-rt.tld'
+//        exclude 'META-INF/sql.tld'
+//        exclude 'org/eclipse/jdt/internal/compiler/parser/parser12.rsc'
+//        exclude 'javax/servlet/jsp/resources/web-jsptaglibrary_2_0.xsd'
+//        exclude 'org/eclipse/jdt/internal/compiler/parser/unicode/start2.rsc'
+//        exclude 'org/eclipse/jdt/internal/compiler/parser/parser20.rsc'
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation "com.android.support:appcompat-v7:$supportLibVersion"
+    implementation "com.android.support:preference-v7:$supportLibVersion"
+    implementation 'com.android.support:design:28.0.0-alpha3'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation 'com.android.support:support-vector-drawable:28.0.0-alpha3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    /*
+                                                                                                        implementation files('libs/jetty-continuation-8.2.0.v20160908.jar')
+                                                                                                        implementation files('libs/jetty-http-8.2.0.v20160908.jar')
+                                                                                                        implementation files('libs/jetty-io-8.2.0.v20160908.jar')
+                                                                                                        implementation files('libs/jetty-server-8.2.0.v20160908.jar')
+                                                                                                        implementation files('libs/jetty-security-8.2.0.v20160908.jar')
+                                                                                                        implementation files('libs/jetty-servlet-8.2.0.v20160908.jar')
+                                                                                                        implementation files('libs/jetty-util-8.2.0.v20160908.jar')
+                                                                                                        implementation files('libs/jetty-webapp-8.2.0.v20160908.jar')
+                                                                                                        implementation files('libs/jetty-xml-8.2.0.v20160908.jar')
+                                                                                                        implementation files('libs/servlet-api-3.0.jar')*/
+
+
+
+    implementation project(':baselibrary')
+    implementation project(':sqlite-manager')
+    implementation 'android.arch.persistence.room:runtime:1.0.0'
+    implementation 'android.arch.persistence.room:rxjava2:1.0.0'
+    annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
+    implementation files('libs/websocket/javax.websocket-api-1.0.jar')
+    implementation files('libs/websocket/javax-websocket-client-impl-9.2.25.v20180606.jar')
+    implementation files('libs/websocket/javax-websocket-server-impl-9.2.25.v20180606.jar')
+    implementation files('libs/websocket/websocket-api-9.2.25.v20180606.jar')
+    implementation files('libs/websocket/websocket-client-9.2.25.v20180606.jar')
+    implementation files('libs/websocket/websocket-common-9.2.25.v20180606.jar')
+    implementation files('libs/websocket/websocket-server-9.2.25.v20180606.jar')
+    implementation files('libs/websocket/websocket-servlet-9.2.25.v20180606.jar')
+    implementation files('libs/spring/jetty-spring-9.2.25.v20180606.jar')
+    implementation files('libs/spdy/spdy-client-9.2.25.v20180606.jar')
+    implementation files('libs/spdy/spdy-core-9.2.25.v20180606.jar')
+    implementation files('libs/spdy/spdy-http-common-9.2.25.v20180606.jar')
+    implementation files('libs/spdy/spdy-http-server-9.2.25.v20180606.jar')
+    implementation files('libs/spdy/spdy-server-9.2.25.v20180606.jar')
+    implementation files('libs/jaspi/javax.security.auth.message-1.0.0.v201108011116.jar')
+    implementation files('libs/fcgi/fcgi-client-9.2.25.v20180606.jar')
+    implementation files('libs/fcgi/fcgi-server-9.2.25.v20180606.jar')
+    implementation files('libs/annotations/asm-5.0.1.jar')
+    implementation files('libs/annotations/asm-commons-5.0.1.jar')
+    implementation files('libs/annotations/javax.annotation-api-1.2.jar')
+    implementation files('libs/jndi/javax.mail.glassfish-1.4.1.v201005082020.jar')
+    implementation files('libs/jndi/javax.transaction-api-1.2.jar')
+    implementation files('libs/apache-jstl/org.apache.taglibs.taglibs-standard-spec-1.2.1.jar')
+    implementation files('libs/apache-jstl/org.apache.taglibs.taglibs-standard-impl-1.2.1.jar')
+    //    implementation files('libs/apache-jsp/org.mortbay.jasper.apache-jsp-8.0.33.jar')
+    //    implementation files('libs/apache-jsp/org.mortbay.jasper.apache-el-8.0.33.jar')
+    //    implementation files('libs/apache-jsp/org.eclipse.jetty.orbit.org.eclipse.jdt.core-3.8.2.v20130121.jar')
+    //    implementation files('libs/apache-jsp/org.eclipse.jetty.apache-jsp-9.2.25.v20180606.jar')
+//    implementation files('libs/apache-jsp/org.mortbay.jasper.apache-jsp-8.0.33.jar')
+//    implementation files('libs/apache-jsp/org.mortbay.jasper.apache-el-8.0.33.jar')
+//    implementation files('libs/apache-jsp/org.eclipse.jetty.orbit.org.eclipse.jdt.core-3.8.2.v20130121.jar')
+//    implementation files('libs/apache-jsp/org.eclipse.jetty.apache-jsp-9.2.25.v20180606.jar')
+//    implementation files('libs/jsp/org.eclipse.jetty.orbit.javax.servlet.jsp.jstl-1.2.0.v201105211821.jar')
+//    implementation files('libs/jsp/org.eclipse.jdt.core-3.8.2.v20130121.jar')
+//    implementation files('libs/jsp/jetty-jsp-jdt-2.3.3.jar')
+//    implementation files('libs/jsp/jetty-jsp-9.2.25.v20180606.jar')
+//    implementation files('libs/jsp/javax.servlet.jsp-api-2.3.1.jar')
+//    implementation files('libs/jsp/javax.servlet.jsp-2.3.2.jar')
+//    implementation files('libs/jsp/javax.servlet.jsp.jstl-1.2.2.jar')
+//    implementation files('libs/jsp/javax.el-3.0.0.jar')
+}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+
+    <color name="color_282d31">#282d31</color>
+    <color name="color_ffffff">#ffffff</color>
+
+    <color name="default_divider_color">#ffe6e6e6</color>
+</resources>

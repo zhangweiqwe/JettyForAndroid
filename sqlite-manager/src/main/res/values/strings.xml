@@ -1,0 +1,35 @@
+<resources>
+    <string name="sqlite_manager_app_name">数据库管理器</string>
+
+
+    <string name="sqlite_manager_error_while_fetching_table_names">获取表时出错</string>
+    <string name="sqlite_manager_database_has_no_tables">数据库没有表</string>
+    <string name="sqlite_manager_please_select_a_table">请选择数据库中的表</string>
+    <string name="sqlite_manager_empty_custom_query">空的查询语句</string>
+    <string name="sqlite_manager_error_while_fetching_data">Error while fetching data. Retry</string>
+    <string name="sqlite_manager_custom_query">自定义查询</string>
+    <string name="sqlite_manager_cancel">取消</string>
+    <string name="sqlite_manager_query">查询</string>
+    <string name="sqlite_manager_custom_query_hint">输入您需要执行的SQL查询语句</string>
+    <string name="sqlite_manager_custom_query_contacins_order_by">Your Custom Query contains \"ORDER BY\" so can\'t reorder the data</string>
+    <string name="sqlite_manager_refresh_query">Refresh Query</string>
+    <string name="sqlite_manager_export_result">Export Result</string>
+    <string name="sqlite_manager_export_result_as_json">Export as Json </string>
+    <string name="sqlite_manager_export_result_as_csv">Export as CSV</string>
+    <string name="sqlite_manager_add">添加</string>
+    <string name="sqlite_manager_update">更新</string>
+    <string name="sqlite_manager_delete">删除</string>
+    <string name="sqlite_manager_table_column_length_error">table column length is not equal to submitted values length</string>
+    <string name="sqlite_manager_blob_not_supported">Blob i.e byte[] operations are not supported by library</string>
+    <string name="sqlite_manager_all_columns_cant_be_empty">All columns can\'t be empty</string>
+    <string name="sqlite_manager_add_row_success">添加行数据成功</string>
+    <string name="sqlite_manager_add_row_error">添加行数据失败</string>
+    <string name="sqlite_manager_delete_row_success">删除此行数据成功</string>
+    <string name="sqlite_manager_delete_row_error">删除此行数据失败</string>
+    <string name="sqlite_manager_update_row_success">更新此行数据成功</string>
+    <string name="sqlite_manager_update_row_error">更新此行数据失败</string>
+    <string name="sqlite_manager_add_row_dialog_title">添加一行数据</string>
+    <string name="sqlite_manager_update_row_dialog_title">更新此行</string>
+    <string name="sqlite_manager_add_row_dialog_message">在 %1$s 表里添加一行数据</string>
+    <string name="sqlite_manager_update_row_dialog_message">在 %1$s 表里更新此行数据</string>
+</resources>
