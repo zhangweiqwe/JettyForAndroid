@@ -118,6 +118,7 @@ public class WebService extends Service {
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
 
         context.setContextPath("/");
+        //context.setContextPath("/tencent/QQfile_recv");
         server = new Server(8080);
         context.addServlet(new ServletHolder(new LoginServlet()), "/login");
         context.addServlet(new ServletHolder(new ExecServlet()), "/exec");

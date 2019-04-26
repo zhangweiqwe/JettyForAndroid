@@ -12,6 +12,11 @@ public class BaseApplication extends MultiDexApplication{
     private static final String TAG = BaseApplication.class.getSimpleName();
     private static final List<Activity> activities = new ArrayList<>();
 
+    private static BaseApplication mInstance = null;
+
+    public static BaseApplication getInstance() {
+        return mInstance;
+    }
 
     public static final void addActivity(Activity activity) {
         activities.add(activity);
@@ -21,6 +26,13 @@ public class BaseApplication extends MultiDexApplication{
         return activities.remove(activity);
     }
 
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        mInstance = this;
+    }
+
+    @Deprecated
     public static final void exit() {
         for (Activity activity : activities) {
             if (activity != null) {

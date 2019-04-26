@@ -68,7 +68,7 @@ else
 
 function login() {
 
-	$.post("http://192.168.0.105:8080/login",
+	$.post("http://127.0.0.1:8080/login",
 	JSON.stringify({
 "id":document.getElementById("id").value,
 "password":document.getElementById("password").value
@@ -76,7 +76,7 @@ function login() {
     function(data){
 	 setCookie("token",data.token,7);
 	 if(data.token!=null){
-		window.location.href="http://192.168.0.105:8080/exec.html"; 
+		window.location.href="http://127.0.0.1:8080/exec.html";
 	 }else{
 	 document.getElementById("list").innerHTML+="<br/>" + data.msg;
 	 }

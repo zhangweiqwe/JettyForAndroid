@@ -20,7 +20,7 @@
 
 <script type="text/javascript">
     var timestamp=Date.parse(new Date());
-    var webSocket=new WebSocket("ws://192.168.0.105:8080/exec");
+    var webSocket=new WebSocket("ws://127.0.0.1:8080/exec");
  
  webSocket.setRequestHeader("token",)
     webSocket.onerror = function(event) {
@@ -33,7 +33,7 @@
  
     webSocket.onmessage = function(event) {
       document.getElementById("list").innerHTML+="<br/>" + event.data;
-	  //alert("数据已接收...");
+	  alert("数据已接收...");
     };
     
     function sendMessage() {
