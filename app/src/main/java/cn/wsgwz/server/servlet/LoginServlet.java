@@ -25,7 +25,7 @@ import cn.wsgwz.server.room.User;
 public class LoginServlet extends HttpServlet {
     private static final String TAG = LoginServlet.class.getSimpleName();
 
-    @Override
+  /*  @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         LoginResult loginResult = new LoginResult();
         StringBuilder sb = new StringBuilder();
@@ -38,6 +38,44 @@ public class LoginServlet extends HttpServlet {
 
         LLog.Companion.d(TAG,sb.toString());
         User reqUser = Const.GSON.fromJson(sb.toString(),User.class);
+
+
+        if(reqUser!=null&&!TextUtils.isEmpty(reqUser.password)){
+            User user = UserManager.getInstance().getUserById(reqUser.id);
+            if(user!=null&&user.password.equals(reqUser.password)){
+                user.token = TokenManager.getInstance().createUserToken(user);
+                loginResult.setCode(Result.SUCCESS.getCode());
+                loginResult.setMsg(Result.SUCCESS.getMsgs()[1]);
+                loginResult.setToken(user.token);
+            }else {
+                loginResult.setCode(Result.ERROR.getCode());
+                loginResult.setMsg(Result.ERROR.getMsgs()[3]);
+            }
+        }else {
+            loginResult.setCode(Result.ERROR.getCode());
+            loginResult.setMsg(Result.ERROR.getMsgs()[1]);
+        }
+
+
+        resp.setHeader("Access-Control-Allow-Origin", "*");
+        resp.setContentType("application/json; charset=utf-8");
+        resp.getWriter().print(new String(Const.GSON.toJson(loginResult).getBytes(), "utf-8"));
+        resp.getWriter().flush();
+        resp.getWriter().close();
+
+    }*/
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int id = Integer.parseInt(req.getParameter("id"));
+        String password = req.getParameter("password");
+
+        LLog.Companion.d(TAG,id+"\t"+password);
+        LoginResult loginResult = new LoginResult();
+
+        User reqUser = new User();
+        reqUser.id = id;
+        reqUser.password = password;
 
 
         if(reqUser!=null&&!TextUtils.isEmpty(reqUser.password)){

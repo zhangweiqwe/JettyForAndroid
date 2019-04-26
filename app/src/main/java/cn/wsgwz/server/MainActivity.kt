@@ -42,7 +42,7 @@ class MainActivity : AppBaseActivity(), NavigationView.OnNavigationItemSelectedL
     }
 
     var iMyAidlInterface: IMyAidlInterface? = null
-    private var serviceConnection: ServiceConnection? = null
+    private lateinit var serviceConnection: ServiceConnection
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
